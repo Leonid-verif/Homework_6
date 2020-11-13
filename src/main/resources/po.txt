@@ -1,0 +1,5 @@
+homePage.open()
+         .clickSearch()
+         .typeSearch()
+         .clickSearchGo();
+         .clickSeeMore();

@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 public class TestDP extends TestSetup {
     HomePage homePage;
     WebDriverWait wait;
-    By iPhoneListBy = By.xpath("//span[@class=\"a-size-medium a-color-base a-text-normal\"]");
+    By laptopListBy = By.xpath("//span[@class=\"a-size-medium a-color-base a-text-normal\"]");
 
 
     @BeforeMethod
@@ -36,8 +36,8 @@ public class TestDP extends TestSetup {
         homePage.clickBrand(value);
 
         int counter = 0 ;
-         List<WebElement> hpList = driver.findElements(iPhoneListBy);
-        for (WebElement el : hpList) {
+         List<WebElement> noteList = driver.findElements(laptopListBy);
+        for (WebElement el : noteList) {
             el.getText();
             counter = counter + 1;
             System.out.println(el.getText());

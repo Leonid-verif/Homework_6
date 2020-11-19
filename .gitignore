@@ -3,4 +3,5 @@ Homework_3_and_4.iml
 target/
 chromedriver.exe
 screenshot/
+src/test/java/resources/cred.properties
 

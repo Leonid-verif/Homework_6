@@ -3,16 +3,20 @@ package test.java;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.java.Pages.HomePage;
+import test.java.utils.DPAnnotationTransformer;
+import test.java.utils.DPSource;
+import test.java.utils.RetryAnalyzer;
 
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestDP extends TestSetup {
+public class TestDP2 extends TestSetup {
     HomePage homePage;
     WebDriverWait wait;
     By laptopListBy = By.xpath("//span[@class=\"a-size-medium a-color-base a-text-normal\"]");
@@ -23,20 +27,22 @@ public class TestDP extends TestSetup {
         homePage = new HomePage(driver);
         homePage
                 .open()
+//                .clkDontChange()
                 .clickSearch()
                 .typeSearch()
                 .clickSearchGo()
                 .clickSeeMore();
     }
 
-    @Test ( dataProvider = "dp")
+//    @Test ( dataProvider = "dp", retryAnalyzer = RetryAnalyzer.class)
+    @Test ( dataProvider = "dp" ,retryAnalyzer = RetryAnalyzer.class)
     public void test_search_laptop(String brand, String value ) throws InterruptedException {
 
         homePage = new HomePage(driver);
         homePage.clickBrand(value);
 
         int counter = 0 ;
-         List<WebElement> noteList = driver.findElements(laptopListBy);
+        List<WebElement> noteList = driver.findElements(laptopListBy);
         for (WebElement el : noteList) {
             el.getText();
             counter = counter + 1;
@@ -50,17 +56,6 @@ public class TestDP extends TestSetup {
     @DataProvider(name = "dp")
     public Object[][] dataProvider() {
         return new Object[][]{
-                {"hp","//li[@id=\"p_89/HP\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"acer","//li[@id=\"p_89/Acer\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"asus","//li[@id=\"p_89/ASUS\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"lenovo","//li[@id=\"p_89/Lenovo\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"dell","//li[@id=\"p_89/Dell\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"microsoft","//li[@id=\"p_89/Microsoft\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"apple","//li[@id=\"p_89/Apple\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"chuwi","//li[@id=\"p_89/CHUWI\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"lg","//li[@id=\"p_89/LG\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-//                {"jumper","//li[@id=\"p_89/jumper\"]//i[@class=\"a-icon a-icon-checkbox\"]"},
-
         };
     }
 
